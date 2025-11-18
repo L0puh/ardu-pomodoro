@@ -7,6 +7,16 @@ static void glfw_error_callback(int error, const char* description)
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
+
+void imgui_style_setup(){
+   float main_scale = ImGui_ImplGlfw_GetContentScaleForMonitor(glfwGetPrimaryMonitor()); 
+   ImGui::StyleColorsDark();
+
+   ImGuiStyle& style = ImGui::GetStyle();
+   style.ScaleAllSizes(main_scale);     
+   style.FontScaleDpi = main_scale * 2.0f;    
+}
+
 int setup_window(){
    glfwSetErrorCallback(glfw_error_callback);
    if (!glfwInit())
@@ -27,17 +37,11 @@ int setup_window(){
    ImGui::CreateContext();
    ImGuiIO& io = ImGui::GetIO(); (void)io;
    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     
-
-   ImGui::StyleColorsDark();
-
-   ImGuiStyle& style = ImGui::GetStyle();
-   style.ScaleAllSizes(main_scale);     
-   style.FontScaleDpi = main_scale;    
+   
+   imgui_style_setup();
 
    ImGui_ImplGlfw_InitForOpenGL(window, true);
    ImGui_ImplOpenGL3_Init(glsl_version);
-
-   glfwSetKeyCallback(window, input_key_callback);
 
    return 0;
 }

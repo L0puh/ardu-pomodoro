@@ -1,5 +1,5 @@
 #include "core/window.h"
-#include "imgui.h"
+#include "draw/tabs.h"
 
 extern GLFWwindow* window;
 static ImGuiWindowFlags flags;
@@ -13,7 +13,7 @@ void draw_program(){
 
 
    ImGui::Begin("name", NULL, flags);
-   ImGui::Text("Hello world");
+   draw_tabs();
    ImGui::End();
 }
 
