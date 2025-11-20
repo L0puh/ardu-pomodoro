@@ -7,6 +7,10 @@
 #include <GLFW/glfw3.h> 
 #include <cstdio>
 
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 void draw_program();
+
 #endif

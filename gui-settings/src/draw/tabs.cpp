@@ -1,6 +1,8 @@
 #include "core/core.h"
+
 #include "imgui.h"
-#include "draw/tabs.h"
+#include "draw/draw.h"
+#include "settings/settings.h"
 
 void draw_tabs(){
    if (ImGui::BeginTabBar("Tabs")){
@@ -17,6 +19,11 @@ void draw_tabs(){
       ImGui::EndTabBar();
    }
 }
+
+
+void draw_stats_tab(){
+}
+
 void draw_settings_tab(){
    static float work_minutes = 25.0f;
 
@@ -47,6 +54,12 @@ void draw_settings_tab(){
    ImGui::SliderFloat("", &rest_minutes, 0.1f, 60*24);
    ImGui::PopItemWidth();
    ImGui::PopID();
-}
-void draw_stats_tab(){
+
+   settings_t settings;
+   settings.work_minutes = work_minutes;
+   settings.rest_minutes = rest_minutes;
+   if (ImGui::Button("save")){
+      save_settings(settings);
+      draw_toast("The file is saved");
+   }
 }

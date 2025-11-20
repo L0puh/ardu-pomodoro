@@ -22,6 +22,7 @@ target_link_libraries(ardu-pomodoro PRIVATE
    ${IMGUI_LIB}
    ${GLFW_LIB}
    OpenGL::GL
+   nlohmann_json::nlohmann_json
 )
 target_include_directories( ardu-pomodoro PRIVATE
    gui-settings/include

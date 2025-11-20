@@ -22,3 +22,7 @@ target_include_directories(imgui PUBLIC
 )
 find_package(glfw3 REQUIRED)
 target_link_libraries(imgui PUBLIC glfw)
+
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(json)
+
