@@ -1,6 +1,5 @@
 #include "core/core.h"
 
-#include "imgui.h"
 #include "draw/draw.h"
 #include "settings/settings.h"
 
@@ -19,10 +18,18 @@ void draw_tabs(){
       ImGui::EndTabBar();
    }
 }
-
-
-void draw_stats_tab(){
+void draw_stats_tab() {
+    static std::vector<float> x_values, y_values; 
+    int count = read_statistics(x_values, y_values);
+    
+    if (count > 0 && ImPlot::BeginPlot("statistics", ImVec2(890, 540))) {
+        ImPlot::SetupAxes("Day", "hours");
+        ImPlot::SetupAxisTicks(ImAxis_X1, *x_values.data(), count, *x_values.data());
+        ImPlot::PlotBars("Study Hours", x_values.data(), y_values.data(), count, 0.8f);
+        ImPlot::EndPlot();
+    }
 }
+
 
 void draw_settings_tab(){
    static float work_minutes = 25.0f;

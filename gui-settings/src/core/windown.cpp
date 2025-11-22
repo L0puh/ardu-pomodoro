@@ -35,6 +35,8 @@ int setup_window(){
 
    IMGUI_CHECKVERSION();
    ImGui::CreateContext();
+   ImPlot::CreateContext();
+
    ImGuiIO& io = ImGui::GetIO(); (void)io;
    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     
    
